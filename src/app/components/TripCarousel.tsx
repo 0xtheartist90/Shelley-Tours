@@ -71,6 +71,7 @@ const TripCarousel = () => {
         const update = () => setVisibleCount(window.innerWidth < 768 ? 1 : 3);
         update();
         window.addEventListener('resize', update);
+
         return () => window.removeEventListener('resize', update);
     }, []);
 

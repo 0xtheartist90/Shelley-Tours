@@ -7,52 +7,244 @@ const WHATSAPP_URL =
 
 const trips = [
     {
-        destination: 'Düsseldorf',
-        description: 'Kerstmarkt',
-        price: '€29',
-        image: 'https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=600&h=400&fit=crop',
+        destination: 'Oberhausen / Duisburg',
+        description: 'Dagtrip Duitsland',
+        date: 'Za 28 maart',
+        price: 'v.a. €30,50',
+        image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop',
         color: 'bg-orange',
-        colorHex: '#F5A623'
+        colorHex: '#F5A623',
+        details: [
+            '€40,50 per volwassene',
+            '€35,50 kind (4–10 jr)',
+            '€30,50 kind (0–3 jr)'
+        ]
     },
     {
-        destination: 'Parijs',
-        description: 'Citytrip',
-        price: '€89',
-        image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&h=400&fit=crop',
+        destination: 'Euro Disney',
+        description: 'Mei Vakantie',
+        date: 'Za 25 – Ma 28 april',
+        price: 'v.a. €465 pp',
+        image: 'https://images.unsplash.com/photo-1597466599360-3b9775841aec?w=600&h=400&fit=crop',
         color: 'bg-navy',
-        colorHex: '#1B2E5C'
+        colorHex: '#1B2E5C',
+        details: [
+            'Vanaf €465,00 per persoon',
+            'ED kaart v.a. €99,00',
+            'Toeslag op 1 en 2 pers. kamers'
+        ]
+    },
+    {
+        destination: 'Antwerpen',
+        description: 'Shopping Dagtrip',
+        date: 'Za 23 mei',
+        price: 'v.a. €30,50',
+        image: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=600&h=400&fit=crop',
+        color: 'bg-sky',
+        colorHex: '#87CEEB',
+        details: [
+            '€40,50 per volwassene',
+            '€35,50 kind (4–10 jr)',
+            '€30,50 kind (0–3 jr)'
+        ]
+    },
+    {
+        destination: 'Wuppertal / Düsseldorf',
+        description: 'Dagtrip Duitsland',
+        date: 'Za 30 mei',
+        price: 'v.a. €30,50',
+        image: 'https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=600&h=400&fit=crop',
+        color: 'bg-orange',
+        colorHex: '#F5A623',
+        details: [
+            '€40,50 per volwassene',
+            '€35,50 kind (4–10 jr)',
+            '€30,50 kind (0–3 jr)'
+        ]
+    },
+    {
+        destination: 'Essen',
+        description: 'Dagtrip Duitsland',
+        date: 'Za 6 juni',
+        price: 'v.a. €30,50',
+        image: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&h=400&fit=crop',
+        color: 'bg-navy',
+        colorHex: '#1B2E5C',
+        details: [
+            '€40,50 per volwassene',
+            '€35,50 kind (4–10 jr)',
+            '€30,50 kind (0–3 jr)'
+        ]
+    },
+    {
+        destination: 'MoviePark',
+        description: 'Pretpark Dagtrip',
+        date: 'Za 27 juni',
+        price: 'v.a. €35,50',
+        image: 'https://images.unsplash.com/photo-1563911302283-d2bc129e7570?w=600&h=400&fit=crop',
+        color: 'bg-sky',
+        colorHex: '#87CEEB',
+        details: [
+            '€90,00 (11–100 jr)',
+            '€80,00 kind (4–10 jr)',
+            'v.a. €35,50 (0–3 jr)'
+        ]
+    },
+    {
+        destination: 'Pretpark',
+        description: 'Dagtrip',
+        date: 'Za 11 juli',
+        price: 'v.a. €...,50 pp',
+        image: 'https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?w=600&h=400&fit=crop',
+        color: 'bg-orange',
+        colorHex: '#F5A623',
+        details: [
+            'Vanaf €...,50 per persoon'
+        ]
+    },
+    {
+        destination: 'Euro Disney Parijs',
+        description: 'Zomervakantie',
+        date: 'Za 19 – Di 22 juli',
+        price: 'v.a. €465 pp',
+        image: 'https://images.unsplash.com/photo-1597466599360-3b9775841aec?w=600&h=400&fit=crop',
+        color: 'bg-navy',
+        colorHex: '#1B2E5C',
+        details: [
+            'Incl. busvervoer / hotel (3 dgn)',
+            'Vanaf €465,00 per persoon',
+            'ED kaart v.a. €99,00',
+            'Toeslag op 1 en 2 pers. kamers'
+        ]
+    },
+    {
+        destination: 'Parijs Shopping',
+        description: 'Zomervakantie',
+        date: 'Juli',
+        price: 'v.a. €465 pp',
+        image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&h=400&fit=crop',
+        color: 'bg-sky',
+        colorHex: '#87CEEB',
+        details: [
+            'Incl. busvervoer / hotel',
+            'Vanaf €465,00 per persoon',
+            'Toeslag op 1 en 2 pers. kamers'
+        ]
+    },
+    {
+        destination: 'Gelsenkirchen / Bochum',
+        description: 'Dagtrip Duitsland',
+        date: 'Za 22 augustus',
+        price: 'v.a. €30,50',
+        image: 'https://images.unsplash.com/photo-1572883454114-1cf0031ede2a?w=600&h=400&fit=crop',
+        color: 'bg-orange',
+        colorHex: '#F5A623',
+        details: [
+            '€40,50 per volwassene',
+            '€35,50 kind (4–10 jr)',
+            '€30,50 kind (0–3 jr)'
+        ]
+    },
+    {
+        destination: 'Notting Hill Carnaval',
+        description: 'Londen Weekend',
+        date: 'Za 29 aug – Ma 1 sep',
+        price: 'v.a. €599 pp',
+        image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&h=400&fit=crop',
+        color: 'bg-navy',
+        colorHex: '#1B2E5C',
+        details: [
+            'Incl. busvervoer / overtocht / hotel',
+            'Vanaf €599,00 per persoon',
+            'Toeslag op 1 en 2 pers. kamers'
+        ]
+    },
+    {
+        destination: 'Essen',
+        description: 'Dagtrip Duitsland',
+        date: 'Za 26 september',
+        price: 'v.a. €30,50',
+        image: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&h=400&fit=crop',
+        color: 'bg-sky',
+        colorHex: '#87CEEB',
+        details: [
+            '€40,50 per volwassene',
+            '€35,50 kind (4–10 jr)',
+            '€30,50 kind (0–3 jr)'
+        ]
+    },
+    {
+        destination: 'MoviePark',
+        description: 'Pretpark Dagtrip',
+        date: 'Za 26 september',
+        price: 'v.a. €35,50',
+        image: 'https://images.unsplash.com/photo-1563911302283-d2bc129e7570?w=600&h=400&fit=crop',
+        color: 'bg-orange',
+        colorHex: '#F5A623',
+        details: [
+            '€90,00 (11–100 jr)',
+            '€80,00 kind (4–10 jr)',
+            'v.a. €35,50 (0–3 jr)'
+        ]
+    },
+    {
+        destination: 'Spanje (Noord Holland)',
+        description: 'Herfstvakantie',
+        date: 'Vr 10 – Za 18 oktober',
+        price: 'v.a. €395 pp',
+        image: 'https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=600&h=400&fit=crop',
+        color: 'bg-navy',
+        colorHex: '#1B2E5C',
+        details: [
+            'Hotels 4★ / Appartementen',
+            'Vanaf €699,00 per volwassene',
+            'Toeslag op 1 en 2 pers. kamers',
+            'Vanaf €395,00'
+        ]
     },
     {
         destination: 'Lloret de Mar',
-        description: 'Zonvakantie',
-        price: '€199',
+        description: 'Herfstvakantie',
+        date: 'Do 16 – Vr 24 oktober',
+        price: 'v.a. €395 pp',
         image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=400&fit=crop',
         color: 'bg-sky',
-        colorHex: '#87CEEB'
+        colorHex: '#87CEEB',
+        details: [
+            'Midden en Zuid Holland',
+            'Hotels 4★ / Appartementen',
+            'Vanaf €699,00 per volwassene',
+            'Toeslag op 1 en 2 pers. kamers',
+            'Vanaf €395,00'
+        ]
     },
     {
-        destination: 'EuroDisney',
+        destination: 'Kerstmarkten',
         description: 'Dagtrip',
-        price: '€79',
-        image: 'https://images.unsplash.com/photo-1597466599360-3b9775841aec?w=600&h=400&fit=crop',
+        date: 'Za 21 november',
+        price: 'v.a. €30,50',
+        image: 'https://images.unsplash.com/photo-1545622783-b3e021430fee?w=600&h=400&fit=crop',
         color: 'bg-orange',
-        colorHex: '#F5A623'
+        colorHex: '#F5A623',
+        details: [
+            '€40,50 per volwassene',
+            '€35,50 kind (4–10 jr)',
+            '€30,50 kind (0–3 jr)'
+        ]
     },
     {
-        destination: 'Brugge',
+        destination: 'Kerstmarkten',
         description: 'Dagtrip',
-        price: '€25',
-        image: 'https://images.unsplash.com/photo-1559113202-c916b8e44373?w=600&h=400&fit=crop',
+        date: 'Za 12 december',
+        price: 'v.a. €30,50',
+        image: 'https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=600&h=400&fit=crop',
         color: 'bg-navy',
-        colorHex: '#1B2E5C'
-    },
-    {
-        destination: 'Essen / Oberhausen',
-        description: 'Dagtrip',
-        price: '€19',
-        image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop',
-        color: 'bg-sky',
-        colorHex: '#87CEEB'
+        colorHex: '#1B2E5C',
+        details: [
+            '€40,50 per volwassene',
+            '€35,50 kind (4–10 jr)',
+            '€30,50 kind (0–3 jr)'
+        ]
     }
 ];
 
@@ -63,6 +255,20 @@ const TripCarousel = () => {
     const [currentIndex, setCurrentIndex] = useState(trips.length);
     const [isTransitioning, setIsTransitioning] = useState(true);
     const [visibleCount, setVisibleCount] = useState(3);
+    const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
+
+    const toggleFlip = (index: number) => {
+        setFlippedCards((prev) => {
+            const next = new Set(prev);
+            if (next.has(index)) {
+                next.delete(index);
+            } else {
+                next.add(index);
+            }
+
+            return next;
+        });
+    };
     const trackRef = useRef<HTMLDivElement>(null);
 
     const gap = visibleCount === 1 ? 0 : 24;
@@ -113,49 +319,76 @@ const TripCarousel = () => {
                         transform: `translateX(calc(-${currentIndex} * (${cardWidthPercent}% + ${gapOffset}px)))`
                     }}
                     onTransitionEnd={handleTransitionEnd}>
-                    {extendedTrips.map((trip, i) => (
-                        <a
-                            key={`${trip.destination}-${i}`}
-                            href={WHATSAPP_URL}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='group shrink-0 flex-col items-center'
-                            style={{ width: visibleCount === 1 ? '100%' : `calc(33.333% - ${(gap * 2) / 3}px)` }}>
-                            <div className='relative mx-auto w-[70%] pb-12 md:w-[85%] md:pb-14'>
-                                {/* Colored card behind */}
-                                <div
-                                    className={`absolute inset-0 top-14 ${trip.color} rounded-full md:top-20`}
-                                    style={{ borderBottomRightRadius: 0 }}
-                                />
-                                {/* Oval image */}
-                                <div className='relative overflow-hidden rounded-full aspect-[3/4]'>
-                                    <img
-                                        src={trip.image}
-                                        alt={trip.destination}
-                                        className='size-full object-cover'
-                                        loading='lazy'
+                    {extendedTrips.map((trip, i) => {
+                        const isFlipped = flippedCards.has(i);
+
+                        return (
+                            <div
+                                key={`${trip.destination}-${i}`}
+                                className='shrink-0 cursor-pointer flex-col items-center'
+                                style={{ width: visibleCount === 1 ? '100%' : `calc(33.333% - ${(gap * 2) / 3}px)` }}
+                                onClick={() => toggleFlip(i)}>
+                                <div className='relative mx-auto w-[70%] pb-12 md:w-[85%] md:pb-14'>
+                                    {/* Colored card behind */}
+                                    <div
+                                        className={`absolute inset-0 top-14 ${trip.color} rounded-full md:top-20`}
+                                        style={{ borderBottomRightRadius: 0 }}
                                     />
-                                    {/* Price pill */}
-                                    <div className='absolute top-5 left-1/2 z-10 -translate-x-1/2'>
-                                        <span
-                                            className='inline-block rounded-full px-3 py-0.5 text-[10px] font-bold text-white shadow-md md:px-4 md:py-1 md:text-xs'
+                                    {/* Oval image / flipped state */}
+                                    <div className='relative overflow-hidden rounded-full aspect-[3/4]'>
+                                        <img
+                                            src={trip.image}
+                                            alt={trip.destination}
+                                            className={`size-full object-cover transition-opacity duration-500 ${isFlipped ? 'opacity-0' : 'opacity-100'}`}
+                                            loading='lazy'
+                                        />
+                                        {/* Color overlay when flipped */}
+                                        <div
+                                            className={`absolute inset-0 flex flex-col items-center justify-center p-6 transition-opacity duration-500 ${isFlipped ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}
                                             style={{ backgroundColor: trip.colorHex }}>
-                                            vanaf {trip.price}
-                                        </span>
+                                            <p className='mb-1 text-xs font-semibold text-white/80 md:text-sm'>{trip.date}</p>
+                                            <h4 className='mb-3 text-center text-sm font-bold text-white md:text-lg'>{trip.destination}</h4>
+                                            <ul className='space-y-1 text-center'>
+                                                {trip.details.map((detail, j) => (
+                                                    <li key={j} className='text-[10px] leading-tight text-white/90 md:text-xs'>
+                                                        {detail}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                            <a
+                                                href={WHATSAPP_URL}
+                                                target='_blank'
+                                                rel='noopener noreferrer'
+                                                onClick={(e) => e.stopPropagation()}
+                                                className='mt-3 inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1.5 text-[10px] font-bold text-white backdrop-blur-sm transition-all hover:bg-white/30 md:text-xs'>
+                                                Boek via WhatsApp
+                                            </a>
+                                        </div>
+                                        {/* Price pill - only when not flipped */}
+                                        <div className={`absolute top-5 left-1/2 z-10 -translate-x-1/2 transition-opacity duration-300 ${isFlipped ? 'opacity-0' : 'opacity-100'}`}>
+                                            <span
+                                                className='inline-block rounded-full px-3 py-0.5 text-[10px] font-bold text-white shadow-md md:px-4 md:py-1 md:text-xs'
+                                                style={{ backgroundColor: trip.colorHex }}>
+                                                {trip.price}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    {/* Destination text in card */}
+                                    <div className='relative z-10 mt-1 text-center'>
+                                        <p className='text-[9px] font-semibold tracking-widest text-white/70 uppercase md:text-[10px]'>
+                                            {trip.description}
+                                        </p>
+                                        <h3 className='text-sm font-bold text-white md:text-base'>
+                                            {trip.destination}
+                                        </h3>
+                                        <p className='text-[9px] font-medium text-white/60 md:text-[10px]'>
+                                            {trip.date}
+                                        </p>
                                     </div>
                                 </div>
-                                {/* Destination text in card */}
-                                <div className='relative z-10 mt-1 text-center'>
-                                    <p className='text-[9px] font-semibold tracking-widest text-white/70 uppercase md:text-[10px]'>
-                                        {trip.description}
-                                    </p>
-                                    <h3 className='text-sm font-bold text-white md:text-base'>
-                                        {trip.destination}
-                                    </h3>
-                                </div>
                             </div>
-                        </a>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
 

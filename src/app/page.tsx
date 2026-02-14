@@ -67,19 +67,21 @@ const Page = () => {
             {/* Navigation */}
             <nav className='fixed top-0 right-0 left-0 z-50 border-b border-white/10 bg-navy/95 backdrop-blur-md'>
                 <div className='mx-auto flex max-w-6xl items-center justify-between px-4 py-3'>
-                    <a href='#' className='flex items-center gap-2'>
+                    <a href='#hero' className='flex items-center'>
                         <Image
-                            src='/images/logo shelleys.png'
+                            src='/images/logo.png'
                             alt="Shelley's Tours logo"
-                            width={48}
+                            width={160}
                             height={48}
-                            className='rounded-full'
+                            className='h-10 w-auto'
                         />
-                        <span className='text-lg font-bold text-white'>
-                            Shelley&apos;s Tours
-                        </span>
                     </a>
                     <div className='hidden items-center gap-6 md:flex'>
+                        <a
+                            href='#wat'
+                            className='text-sm text-white/80 transition-colors hover:text-white'>
+                            Wat is Shelley&apos;s Tours
+                        </a>
                         <a
                             href='#reizen'
                             className='text-sm text-white/80 transition-colors hover:text-white'>
@@ -107,7 +109,7 @@ const Page = () => {
 
             <main>
                 {/* 1. Hero Section */}
-                <section className='relative flex min-h-screen items-center overflow-hidden bg-navy pt-20'>
+                <section id='hero' className='relative flex min-h-screen items-center overflow-hidden bg-navy pt-20'>
                     <video
                         autoPlay
                         muted
@@ -120,11 +122,11 @@ const Page = () => {
                     <div className='absolute inset-0 bg-navy/60' />
                     <div className='relative z-10 mx-auto max-w-6xl px-4 py-20 text-center'>
                         <Image
-                            src='/images/logo shelleys.png'
+                            src='/images/logo.png'
                             alt="Shelley's Tours"
-                            width={160}
-                            height={160}
-                            className='mx-auto mb-8'
+                            width={220}
+                            height={200}
+                            className='mx-auto mb-8 h-24 w-auto'
                             priority
                         />
                         <h1 className='mb-6 text-4xl leading-tight font-extrabold text-white md:text-6xl lg:text-7xl'>
@@ -157,7 +159,7 @@ const Page = () => {
                 </section>
 
                 {/* 2. Wat is Shelley's Tours? */}
-                <section className='relative z-10 overflow-visible bg-white pt-4 pb-0 md:pt-6'>
+                <section id='wat' className='relative z-10 overflow-visible bg-white pt-4 pb-0 md:pt-6'>
                     <div className='mx-auto grid max-w-7xl items-end px-4 md:grid-cols-[1.2fr_1fr] md:gap-8'>
                         <div className='relative -ml-4 flex items-end justify-center md:-ml-8 md:justify-start'>
                             <Image
@@ -319,12 +321,13 @@ const Page = () => {
                                     height={875}
                                     className='w-96 drop-shadow-2xl md:w-[28rem] lg:w-[32rem]'
                                 />
-                                {/* Orange line at bottom of image */}
-                                <div className='absolute bottom-0 left-0 h-1.5 w-16 rounded-full bg-orange' />
+                                {/* Orange line for mobile */}
+                                <div className='absolute bottom-0 left-0 h-1.5 w-16 rounded-full bg-orange md:hidden' />
                             </div>
                             {/* Right: content */}
                             <div className='pb-8 md:pb-12'>
-                                <h2 className='mb-6 mt-6 text-4xl font-extrabold tracking-tight text-navy md:text-5xl lg:text-6xl'>
+                                <div className='mb-4 hidden h-1.5 w-16 rounded-full bg-orange md:block' />
+                                <h2 className='mb-6 text-4xl font-extrabold tracking-tight text-navy md:mt-4 md:text-5xl lg:text-6xl'>
                                     Heb je vragen of wil je mee op reis?
                                 </h2>
                                 <p className='mb-10 max-w-xl text-lg text-navy/70'>
@@ -344,11 +347,11 @@ const Page = () => {
             <footer className='bg-navy py-8'>
                 <div className='mx-auto max-w-6xl px-4 text-center'>
                     <Image
-                        src='/images/logo shelleys.png'
+                        src='/images/logo.png'
                         alt="Shelley's Tours"
-                        width={60}
+                        width={160}
                         height={60}
-                        className='mx-auto mb-4'
+                        className='mx-auto mb-4 h-12 w-auto'
                     />
                     <div className='mb-4 flex flex-wrap items-center justify-center gap-6 text-white/80'>
                         <a

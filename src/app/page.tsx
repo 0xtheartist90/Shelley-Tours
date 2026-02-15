@@ -1,4 +1,7 @@
+'use client';
+
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 
 import TripCarousel from '@/app/components/TripCarousel';
 
@@ -62,14 +65,56 @@ const steps = [
 ];
 
 const Page = () => {
+    const [activeSection, setActiveSection] = useState('hero');
+
+    const handleNavClick = (section: string) => {
+        setActiveSection(section);
+    };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const sections = ['hero', 'wat', 'reizen', 'waarom', 'hoe', 'contact'];
+            const scrollPosition = window.scrollY + 140;
+            const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 20;
+
+            if (nearBottom) {
+                setActiveSection('contact');
+
+                return;
+            }
+
+            let currentSection = sections[0];
+
+            sections.forEach((section) => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const style = window.getComputedStyle(element);
+                    const scrollMarginTop = parseFloat(style.scrollMarginTop || '0');
+                    const offsetTop = element.offsetTop - scrollMarginTop;
+
+                    if (scrollPosition >= offsetTop) {
+                        currentSection = section;
+                    }
+                }
+            });
+
+            setActiveSection(currentSection);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
         <>
             {/* Navigation */}
             <nav className='fixed top-0 right-0 left-0 z-50 border-b border-white/10 bg-navy/95 backdrop-blur-md'>
-                <div className='mx-auto flex max-w-6xl items-center justify-between px-4 py-3'>
-                    <a href='#hero' className='flex items-center'>
+                <div className='mx-auto flex max-w-6xl items-center justify-center px-4 py-3 md:justify-between'>
+                    <a href='#hero' className='flex items-center justify-center md:justify-start'>
                         <Image
-                            src='/images/logo.png'
+                            src='/images/logotopnav.png'
                             alt="Shelley's Tours logo"
                             width={160}
                             height={48}
@@ -79,31 +124,48 @@ const Page = () => {
                     <div className='hidden items-center gap-6 md:flex'>
                         <a
                             href='#wat'
-                            className='text-sm text-white/80 transition-colors hover:text-white'>
+                            onClick={() => handleNavClick('wat')}
+                            className={`text-sm transition-colors hover:text-white ${
+                                activeSection === 'wat' ? 'text-orange' : 'text-white/80'
+                            }`}>
                             Wat is Shelley&apos;s Tours
                         </a>
                         <a
                             href='#reizen'
-                            className='text-sm text-white/80 transition-colors hover:text-white'>
+                            onClick={() => handleNavClick('reizen')}
+                            className={`text-sm transition-colors hover:text-white ${
+                                activeSection === 'reizen' ? 'text-orange' : 'text-white/80'
+                            }`}>
                             Reizen
                         </a>
                         <a
                             href='#waarom'
-                            className='text-sm text-white/80 transition-colors hover:text-white'>
+                            onClick={() => handleNavClick('waarom')}
+                            className={`text-sm transition-colors hover:text-white ${
+                                activeSection === 'waarom' ? 'text-orange' : 'text-white/80'
+                            }`}>
                             Waarom wij
                         </a>
                         <a
                             href='#hoe'
-                            className='text-sm text-white/80 transition-colors hover:text-white'>
+                            onClick={() => handleNavClick('hoe')}
+                            className={`text-sm transition-colors hover:text-white ${
+                                activeSection === 'hoe' ? 'text-orange' : 'text-white/80'
+                            }`}>
                             Hoe werkt het
                         </a>
                         <a
                             href='#contact'
-                            className='text-sm text-white/80 transition-colors hover:text-white'>
+                            onClick={() => handleNavClick('contact')}
+                            className={`text-sm transition-colors hover:text-white ${
+                                activeSection === 'contact' ? 'text-orange' : 'text-white/80'
+                            }`}>
                             Contact
                         </a>
                     </div>
-                    <WhatsAppButtonSmall>WhatsApp</WhatsAppButtonSmall>
+                    <div className='hidden md:block'>
+                        <WhatsAppButtonSmall>WhatsApp</WhatsAppButtonSmall>
+                    </div>
                 </div>
             </nav>
 
@@ -122,11 +184,11 @@ const Page = () => {
                     <div className='absolute inset-0 bg-navy/60' />
                     <div className='relative z-10 mx-auto max-w-6xl px-4 py-20 text-center'>
                         <Image
-                            src='/images/logo.png'
+                            src='/images/logo white .png'
                             alt="Shelley's Tours"
-                            width={220}
-                            height={200}
-                            className='mx-auto mb-8 h-24 w-auto'
+                            width={660}
+                            height={600}
+                            className='mx-auto mb-8 h-72 w-auto'
                             priority
                         />
                         <h1 className='mb-6 text-4xl leading-tight font-extrabold text-white md:text-6xl lg:text-7xl'>
@@ -222,17 +284,19 @@ const Page = () => {
                 </section>
 
                 {/* 4. Waarom Shelley's Tours? */}
-                <section id='waarom' className='relative overflow-visible bg-white pt-8 pb-16 md:pt-12 md:pb-20'>
+                <section
+                    id='waarom'
+                    className='relative overflow-visible bg-white pt-8 pb-16 md:pt-12 md:pb-20 scroll-mt-28 md:scroll-mt-40'>
                     <div className='mx-auto max-w-7xl px-4'>
                         <div className='grid items-center gap-10 md:grid-cols-[1fr_auto]'>
                             <div>
-                                <div className='mb-8'>
+                                <div className='mb-8 ml-4 md:ml-8'>
                                     <div className='mb-4 h-1.5 w-16 rounded-full bg-orange' />
                                     <h2 className='mb-2 text-4xl font-extrabold tracking-tight text-navy md:text-5xl lg:text-6xl'>
                                         Waarom Shelley&apos;s Tours?
                                     </h2>
                                 </div>
-                                <div className='grid grid-cols-2 gap-3 md:grid-cols-3'>
+                                <div className='grid grid-cols-2 gap-3 md:grid-cols-3 ml-4 md:ml-8'>
                                     {reasons.map((reason) => (
                                         <div
                                             key={reason.text}
@@ -245,14 +309,14 @@ const Page = () => {
                                     ))}
                                 </div>
                             </div>
-                            <div className='relative -mt-32 hidden md:-mt-40 md:block lg:-mt-48'>
+                            <div className='relative -mt-24 hidden md:-mt-32 md:block lg:-mt-40'>
                                 <Image
                                     src='/images/Shelley2.png'
                                     alt="Shelley's Tours"
                                     width={400}
                                     height={500}
-                                    className='relative z-20 w-72 drop-shadow-2xl lg:w-96'
-                                    style={{ marginBottom: '-180px' }}
+                                    className='relative z-20 w-78 drop-shadow-2xl lg:w-[25rem]'
+                                    style={{ marginBottom: '-200px', left: '-96px' }}
                                 />
                             </div>
                         </div>
@@ -290,7 +354,7 @@ const Page = () => {
                                 alt=''
                                 width={36}
                                 height={36}
-                                className='pointer-events-none absolute top-[14px] -right-3 z-0 hidden w-10 rotate-45 md:block'
+                                className='pointer-events-none absolute top-[22px] -right-8 z-0 hidden w-10 rotate-0 md:block'
                                 aria-hidden='true'
                             />
                             {steps.map((step) => (
@@ -309,11 +373,13 @@ const Page = () => {
                 </section>
 
                 {/* 6. Contact / CTA Afsluiter */}
-                <section id='contact' className='relative z-10 overflow-visible bg-gradient-to-br from-secondary to-white pt-8 pb-0 md:pt-10 md:pb-0'>
+                <section id='contact' className='relative z-10 overflow-visible bg-gradient-to-br from-secondary to-white pt-2 pb-0 md:pt-4 md:pb-0'>
                     <div className='mx-auto max-w-7xl px-4'>
                         <div className='grid items-end gap-10 md:grid-cols-[auto_1fr]'>
                             {/* Left: heartpalm image - bleeds into section above */}
-                            <div className='relative mx-auto self-end md:mx-0' style={{ marginTop: '-80px' }}>
+                            <div
+                                className='relative mx-auto self-end md:mx-0'
+                                style={{ marginTop: '-90px', marginBottom: '-60px' }}>
                                 <Image
                                     src='/images/heartpalm.png'
                                     alt='Palm trees'
@@ -321,12 +387,10 @@ const Page = () => {
                                     height={875}
                                     className='w-96 drop-shadow-2xl md:w-[28rem] lg:w-[32rem]'
                                 />
-                                {/* Orange line for mobile */}
-                                <div className='absolute bottom-0 left-0 h-1.5 w-16 rounded-full bg-orange md:hidden' />
                             </div>
                             {/* Right: content */}
                             <div className='pb-8 md:pb-12'>
-                                <div className='mb-4 hidden h-1.5 w-16 rounded-full bg-orange md:block' />
+                                <div className='mb-4 h-1.5 w-16 rounded-full bg-orange' />
                                 <h2 className='mb-6 text-4xl font-extrabold tracking-tight text-navy md:mt-4 md:text-5xl lg:text-6xl'>
                                     Heb je vragen of wil je mee op reis?
                                 </h2>
@@ -347,11 +411,11 @@ const Page = () => {
             <footer className='bg-navy py-8'>
                 <div className='mx-auto max-w-6xl px-4 text-center'>
                     <Image
-                        src='/images/logo.png'
+                        src='/images/logotopnav.png'
                         alt="Shelley's Tours"
                         width={160}
-                        height={60}
-                        className='mx-auto mb-4 h-12 w-auto'
+                        height={48}
+                        className='mx-auto mb-4 h-10 w-auto'
                     />
                     <div className='mb-4 flex flex-wrap items-center justify-center gap-6 text-white/80'>
                         <a

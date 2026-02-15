@@ -11,7 +11,7 @@ const trips = [
         description: 'Dagtrip Duitsland',
         date: 'Za 28 maart',
         price: 'v.a. €30,50',
-        image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop',
+        image: '/images/oberhausen/duisburg.png',
         color: 'bg-orange',
         colorHex: '#F5A623',
         details: [
@@ -39,7 +39,7 @@ const trips = [
         description: 'Shopping Dagtrip',
         date: 'Za 23 mei',
         price: 'v.a. €30,50',
-        image: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=600&h=400&fit=crop',
+        image: '/images/Antwerpen.png',
         color: 'bg-sky',
         colorHex: '#87CEEB',
         details: [
@@ -53,7 +53,7 @@ const trips = [
         description: 'Dagtrip Duitsland',
         date: 'Za 30 mei',
         price: 'v.a. €30,50',
-        image: 'https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=600&h=400&fit=crop',
+        image: '/images/dusseldorf.png',
         color: 'bg-orange',
         colorHex: '#F5A623',
         details: [
@@ -67,7 +67,7 @@ const trips = [
         description: 'Dagtrip Duitsland',
         date: 'Za 6 juni',
         price: 'v.a. €30,50',
-        image: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&h=400&fit=crop',
+        image: '/images/Essen.png',
         color: 'bg-navy',
         colorHex: '#1B2E5C',
         details: [
@@ -81,7 +81,7 @@ const trips = [
         description: 'Pretpark Dagtrip',
         date: 'Za 27 juni',
         price: 'v.a. €35,50',
-        image: 'https://images.unsplash.com/photo-1563911302283-d2bc129e7570?w=600&h=400&fit=crop',
+        image: '/images/moviepark.png',
         color: 'bg-sky',
         colorHex: '#87CEEB',
         details: [
@@ -136,7 +136,7 @@ const trips = [
         description: 'Dagtrip Duitsland',
         date: 'Za 22 augustus',
         price: 'v.a. €30,50',
-        image: 'https://images.unsplash.com/photo-1572883454114-1cf0031ede2a?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop',
         color: 'bg-orange',
         colorHex: '#F5A623',
         details: [
@@ -150,7 +150,7 @@ const trips = [
         description: 'Londen Weekend',
         date: 'Za 29 aug – Ma 1 sep',
         price: 'v.a. €599 pp',
-        image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&h=400&fit=crop',
+        image: '/images/nothing hill.png',
         color: 'bg-navy',
         colorHex: '#1B2E5C',
         details: [
@@ -164,7 +164,7 @@ const trips = [
         description: 'Dagtrip Duitsland',
         date: 'Za 26 september',
         price: 'v.a. €30,50',
-        image: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&h=400&fit=crop',
+        image: '/images/Essen.png',
         color: 'bg-sky',
         colorHex: '#87CEEB',
         details: [
@@ -178,7 +178,7 @@ const trips = [
         description: 'Pretpark Dagtrip',
         date: 'Za 26 september',
         price: 'v.a. €35,50',
-        image: 'https://images.unsplash.com/photo-1563911302283-d2bc129e7570?w=600&h=400&fit=crop',
+        image: '/images/moviepark.png',
         color: 'bg-orange',
         colorHex: '#F5A623',
         details: [
@@ -207,7 +207,7 @@ const trips = [
         description: 'Herfstvakantie',
         date: 'Do 16 – Vr 24 oktober',
         price: 'v.a. €395 pp',
-        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=400&fit=crop',
+        image: '/images/lloret de mar.png',
         color: 'bg-sky',
         colorHex: '#87CEEB',
         details: [
@@ -223,7 +223,7 @@ const trips = [
         description: 'Dagtrip',
         date: 'Za 21 november',
         price: 'v.a. €30,50',
-        image: 'https://images.unsplash.com/photo-1545622783-b3e021430fee?w=600&h=400&fit=crop',
+        image: '/images/kerstmarkten.png',
         color: 'bg-orange',
         colorHex: '#F5A623',
         details: [
@@ -237,7 +237,7 @@ const trips = [
         description: 'Dagtrip',
         date: 'Za 12 december',
         price: 'v.a. €30,50',
-        image: 'https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=600&h=400&fit=crop',
+        image: '/images/kerstmarkten2.png',
         color: 'bg-navy',
         colorHex: '#1B2E5C',
         details: [
@@ -256,6 +256,8 @@ const TripCarousel = () => {
     const [isTransitioning, setIsTransitioning] = useState(true);
     const [visibleCount, setVisibleCount] = useState(3);
     const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
+    const [touchStartX, setTouchStartX] = useState<number | null>(null);
+    const [touchEndX, setTouchEndX] = useState<number | null>(null);
 
     const toggleFlip = (index: number) => {
         setFlippedCards((prev) => {
@@ -307,10 +309,40 @@ const TripCarousel = () => {
     const cardWidthPercent = visibleCount === 1 ? 100 : 33.333;
     const gapOffset = visibleCount === 1 ? 0 : gap / 3;
 
+    const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+        setTouchEndX(null);
+        setTouchStartX(event.touches[0].clientX);
+    };
+
+    const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
+        setTouchEndX(event.touches[0].clientX);
+    };
+
+    const handleTouchEnd = () => {
+        if (!touchStartX || touchEndX === null) return;
+        const distance = touchStartX - touchEndX;
+        const minSwipeDistance = 50;
+
+        if (Math.abs(distance) > minSwipeDistance) {
+            if (distance > 0) {
+                next();
+            } else {
+                prev();
+            }
+        }
+
+        setTouchStartX(null);
+        setTouchEndX(null);
+    };
+
     return (
         <div>
             {/* Carousel */}
-            <div className='relative overflow-hidden'>
+            <div
+                className='relative overflow-hidden'
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}>
                 <div
                     ref={trackRef}
                     className={`flex ${isTransitioning ? 'transition-transform duration-500 ease-in-out' : ''}`}
@@ -328,7 +360,7 @@ const TripCarousel = () => {
                                 className='shrink-0 cursor-pointer flex-col items-center'
                                 style={{ width: visibleCount === 1 ? '100%' : `calc(33.333% - ${(gap * 2) / 3}px)` }}
                                 onClick={() => toggleFlip(i)}>
-                                <div className='relative mx-auto w-[70%] pb-12 md:w-[85%] md:pb-14'>
+                                <div className='relative mx-auto w-full max-w-sm pb-12 md:w-[85%] md:max-w-none md:pb-14'>
                                     {/* Colored card behind */}
                                     <div
                                         className={`absolute inset-0 top-14 ${trip.color} rounded-full md:top-20`}
@@ -342,6 +374,16 @@ const TripCarousel = () => {
                                             className={`size-full object-cover transition-opacity duration-500 ${isFlipped ? 'opacity-0' : 'opacity-100'}`}
                                             loading='lazy'
                                         />
+                                        {/* Click indicator pill */}
+                                        <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-300 ${isFlipped ? 'opacity-0' : 'opacity-100'}`}>
+                                            <div className='flex items-center gap-1.5 rounded-full bg-white/20 backdrop-blur-sm px-3 py-1.5 text-[10px] font-medium text-white/90 shadow-md md:text-xs'>
+                                                <svg className='size-3' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={2}>
+                                                    <path strokeLinecap='round' strokeLinejoin='round' d='M15 12a3 3 0 11-6 0 3 3 0 016 0z' />
+                                                    <path strokeLinecap='round' strokeLinejoin='round' d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z' />
+                                                </svg>
+                                                <span>Klik voor details</span>
+                                            </div>
+                                        </div>
                                         {/* Color overlay when flipped */}
                                         <div
                                             className={`absolute inset-0 flex flex-col items-center justify-center p-6 transition-opacity duration-500 ${isFlipped ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}
@@ -393,7 +435,7 @@ const TripCarousel = () => {
             </div>
 
             {/* Arrows + Pagination */}
-            <div className='mt-8 flex items-center justify-center gap-6'>
+            <div className='mt-8 flex flex-wrap items-center justify-center gap-4 md:gap-6'>
                 <button
                     onClick={prev}
                     className='flex size-12 items-center justify-center rounded-full border-2 border-navy/20 text-navy transition-all duration-200 hover:border-orange hover:bg-orange hover:text-white'>
@@ -402,7 +444,11 @@ const TripCarousel = () => {
                     </svg>
                 </button>
 
-                <div className='flex items-center gap-2'>
+                <div className='text-xs font-semibold text-navy md:hidden'>
+                    {realIndex + 1} / {trips.length}
+                </div>
+
+                <div className='hidden items-center gap-2 md:flex'>
                     {trips.map((_, i) => (
                         <button
                             key={i}

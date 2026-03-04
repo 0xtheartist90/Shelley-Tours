@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const WHATSAPP_URL =
     'https://wa.me/31645821782?text=Hallo%20Shelley%27s%20Tours%2C%20ik%20wil%20graag%20meer%20informatie!';
 
-const trips = [
+const rawTrips = [
     {
         destination: 'Oberhausen / Duisburg',
         description: 'Dagtrip Duitsland',
@@ -14,11 +14,7 @@ const trips = [
         image: '/images/oberhausen/duisburg.png',
         color: 'bg-orange',
         colorHex: '#F5A623',
-        details: [
-            '€40,50 per volwassene',
-            '€35,50 kind (4–10 jr)',
-            '€30,50 kind (0–3 jr)'
-        ]
+        details: ['€40,50 per volwassene', '€35,50 kind (4–10 jr)', '€30,50 kind (0–3 jr)']
     },
     {
         destination: 'Euro Disney',
@@ -28,11 +24,7 @@ const trips = [
         image: 'https://images.unsplash.com/photo-1597466599360-3b9775841aec?w=600&h=400&fit=crop',
         color: 'bg-navy',
         colorHex: '#1B2E5C',
-        details: [
-            'Vanaf €465,00 per persoon',
-            'ED kaart v.a. €99,00',
-            'Toeslag op 1 en 2 pers. kamers'
-        ]
+        details: ['Vanaf €465,00 per persoon', 'ED kaart v.a. €99,00', 'Toeslag op 1 en 2 pers. kamers']
     },
     {
         destination: 'Antwerpen',
@@ -42,11 +34,7 @@ const trips = [
         image: '/images/Antwerpen.png',
         color: 'bg-sky',
         colorHex: '#87CEEB',
-        details: [
-            '€40,50 per volwassene',
-            '€35,50 kind (4–10 jr)',
-            '€30,50 kind (0–3 jr)'
-        ]
+        details: ['€40,50 per volwassene', '€35,50 kind (4–10 jr)', '€30,50 kind (0–3 jr)']
     },
     {
         destination: 'Wuppertal / Düsseldorf',
@@ -56,11 +44,7 @@ const trips = [
         image: '/images/dusseldorf.png',
         color: 'bg-orange',
         colorHex: '#F5A623',
-        details: [
-            '€40,50 per volwassene',
-            '€35,50 kind (4–10 jr)',
-            '€30,50 kind (0–3 jr)'
-        ]
+        details: ['€40,50 per volwassene', '€35,50 kind (4–10 jr)', '€30,50 kind (0–3 jr)']
     },
     {
         destination: 'Essen',
@@ -70,11 +54,7 @@ const trips = [
         image: '/images/Essen.png',
         color: 'bg-navy',
         colorHex: '#1B2E5C',
-        details: [
-            '€40,50 per volwassene',
-            '€35,50 kind (4–10 jr)',
-            '€30,50 kind (0–3 jr)'
-        ]
+        details: ['€40,50 per volwassene', '€35,50 kind (4–10 jr)', '€30,50 kind (0–3 jr)']
     },
     {
         destination: 'MoviePark',
@@ -84,11 +64,7 @@ const trips = [
         image: '/images/moviepark.png',
         color: 'bg-sky',
         colorHex: '#87CEEB',
-        details: [
-            '€90,00 (11–100 jr)',
-            '€80,00 kind (4–10 jr)',
-            'v.a. €35,50 (0–3 jr)'
-        ]
+        details: ['€90,00 (11–100 jr)', '€80,00 kind (4–10 jr)', 'v.a. €35,50 (0–3 jr)']
     },
     {
         destination: 'Pretpark',
@@ -98,9 +74,7 @@ const trips = [
         image: 'https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?w=600&h=400&fit=crop',
         color: 'bg-orange',
         colorHex: '#F5A623',
-        details: [
-            'Vanaf €...,50 per persoon'
-        ]
+        details: ['Vanaf €...,50 per persoon']
     },
     {
         destination: 'Euro Disney Parijs',
@@ -125,11 +99,7 @@ const trips = [
         image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&h=400&fit=crop',
         color: 'bg-sky',
         colorHex: '#87CEEB',
-        details: [
-            'Incl. busvervoer / hotel',
-            'Vanaf €465,00 per persoon',
-            'Toeslag op 1 en 2 pers. kamers'
-        ]
+        details: ['Incl. busvervoer / hotel', 'Vanaf €465,00 per persoon', 'Toeslag op 1 en 2 pers. kamers']
     },
     {
         destination: 'Gelsenkirchen / Bochum',
@@ -139,11 +109,7 @@ const trips = [
         image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop',
         color: 'bg-orange',
         colorHex: '#F5A623',
-        details: [
-            '€40,50 per volwassene',
-            '€35,50 kind (4–10 jr)',
-            '€30,50 kind (0–3 jr)'
-        ]
+        details: ['€40,50 per volwassene', '€35,50 kind (4–10 jr)', '€30,50 kind (0–3 jr)']
     },
     {
         destination: 'Notting Hill Carnaval',
@@ -153,11 +119,7 @@ const trips = [
         image: '/images/nothing hill.png',
         color: 'bg-navy',
         colorHex: '#1B2E5C',
-        details: [
-            'Incl. busvervoer / overtocht / hotel',
-            'Vanaf €599,00 per persoon',
-            'Toeslag op 1 en 2 pers. kamers'
-        ]
+        details: ['Incl. busvervoer / overtocht / hotel', 'Vanaf €599,00 per persoon', 'Toeslag op 1 en 2 pers. kamers']
     },
     {
         destination: 'Essen',
@@ -167,11 +129,7 @@ const trips = [
         image: '/images/Essen.png',
         color: 'bg-sky',
         colorHex: '#87CEEB',
-        details: [
-            '€40,50 per volwassene',
-            '€35,50 kind (4–10 jr)',
-            '€30,50 kind (0–3 jr)'
-        ]
+        details: ['€40,50 per volwassene', '€35,50 kind (4–10 jr)', '€30,50 kind (0–3 jr)']
     },
     {
         destination: 'MoviePark',
@@ -181,11 +139,7 @@ const trips = [
         image: '/images/moviepark.png',
         color: 'bg-orange',
         colorHex: '#F5A623',
-        details: [
-            '€90,00 (11–100 jr)',
-            '€80,00 kind (4–10 jr)',
-            'v.a. €35,50 (0–3 jr)'
-        ]
+        details: ['€90,00 (11–100 jr)', '€80,00 kind (4–10 jr)', 'v.a. €35,50 (0–3 jr)']
     },
     {
         destination: 'Spanje (Noord Holland)',
@@ -226,11 +180,7 @@ const trips = [
         image: '/images/kerstmarkten.png',
         color: 'bg-orange',
         colorHex: '#F5A623',
-        details: [
-            '€40,50 per volwassene',
-            '€35,50 kind (4–10 jr)',
-            '€30,50 kind (0–3 jr)'
-        ]
+        details: ['€40,50 per volwassene', '€35,50 kind (4–10 jr)', '€30,50 kind (0–3 jr)']
     },
     {
         destination: 'Kerstmarkten',
@@ -240,13 +190,24 @@ const trips = [
         image: '/images/kerstmarkten2.png',
         color: 'bg-navy',
         colorHex: '#1B2E5C',
-        details: [
-            '€40,50 per volwassene',
-            '€35,50 kind (4–10 jr)',
-            '€30,50 kind (0–3 jr)'
-        ]
+        details: ['€40,50 per volwassene', '€35,50 kind (4–10 jr)', '€30,50 kind (0–3 jr)']
     }
 ];
+
+const DEFAULT_PICKUP_LOCATION = 'Holendrecht Station';
+const DEFAULT_PICKUP_TIME = '08:00';
+const PICKUP_TIME_OVERRIDES: Record<string, string> = {
+    'Euro Disney': '07:00',
+    'Euro Disney Parijs': '07:00',
+    'Spanje (Noord Holland)': '19:30',
+    'Lloret de Mar': '19:30'
+};
+
+export const trips = rawTrips.map((trip) => ({
+    ...trip,
+    pickupLocation: DEFAULT_PICKUP_LOCATION,
+    pickupTime: PICKUP_TIME_OVERRIDES[trip.destination] ?? DEFAULT_PICKUP_TIME
+}));
 
 // Duplicate trips for infinite illusion
 const extendedTrips = [...trips, ...trips, ...trips];
@@ -367,7 +328,7 @@ const TripCarousel = () => {
                                         style={{ borderBottomRightRadius: 0 }}
                                     />
                                     {/* Oval image / flipped state */}
-                                    <div className='relative overflow-hidden rounded-full aspect-[3/4]'>
+                                    <div className='relative aspect-[3/4] overflow-hidden rounded-full'>
                                         <img
                                             src={trip.image}
                                             alt={trip.destination}
@@ -375,11 +336,25 @@ const TripCarousel = () => {
                                             loading='lazy'
                                         />
                                         {/* Click indicator pill */}
-                                        <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-300 ${isFlipped ? 'opacity-0' : 'opacity-100'}`}>
-                                            <div className='flex items-center gap-1.5 rounded-full bg-white/20 backdrop-blur-sm px-3 py-1.5 text-[10px] font-medium text-white/90 shadow-md md:text-xs'>
-                                                <svg className='size-3' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={2}>
-                                                    <path strokeLinecap='round' strokeLinejoin='round' d='M15 12a3 3 0 11-6 0 3 3 0 016 0z' />
-                                                    <path strokeLinecap='round' strokeLinejoin='round' d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z' />
+                                        <div
+                                            className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-300 ${isFlipped ? 'opacity-0' : 'opacity-100'}`}>
+                                            <div className='flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1.5 text-[10px] font-medium text-white/90 shadow-md backdrop-blur-sm md:text-xs'>
+                                                <svg
+                                                    className='size-3'
+                                                    fill='none'
+                                                    viewBox='0 0 24 24'
+                                                    stroke='currentColor'
+                                                    strokeWidth={2}>
+                                                    <path
+                                                        strokeLinecap='round'
+                                                        strokeLinejoin='round'
+                                                        d='M15 12a3 3 0 11-6 0 3 3 0 016 0z'
+                                                    />
+                                                    <path
+                                                        strokeLinecap='round'
+                                                        strokeLinejoin='round'
+                                                        d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z'
+                                                    />
                                                 </svg>
                                                 <span>Klik voor details</span>
                                             </div>
@@ -388,15 +363,24 @@ const TripCarousel = () => {
                                         <div
                                             className={`absolute inset-0 flex flex-col items-center justify-center p-6 transition-opacity duration-500 ${isFlipped ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}
                                             style={{ backgroundColor: trip.colorHex }}>
-                                            <p className='mb-1 text-xs font-semibold text-white/80 md:text-sm'>{trip.date}</p>
-                                            <h4 className='mb-3 text-center text-sm font-bold text-white md:text-lg'>{trip.destination}</h4>
+                                            <p className='mb-1 text-xs font-semibold text-white/80 md:text-sm'>
+                                                {trip.date}
+                                            </p>
+                                            <h4 className='mt-2 mb-3 text-center text-sm font-bold text-white md:text-lg'>
+                                                {trip.destination}
+                                            </h4>
                                             <ul className='space-y-1 text-center'>
                                                 {trip.details.map((detail, j) => (
-                                                    <li key={j} className='text-[10px] leading-tight text-white/90 md:text-xs'>
+                                                    <li
+                                                        key={j}
+                                                        className='text-[10px] leading-tight text-white/90 md:text-xs'>
                                                         {detail}
                                                     </li>
                                                 ))}
                                             </ul>
+                                            <div className='mt-3 rounded-full bg-white/15 px-4 py-1 text-[10px] font-semibold text-white/90 md:text-xs'>
+                                                Opstap: {trip.pickupLocation} · {trip.pickupTime}
+                                            </div>
                                             <a
                                                 href={WHATSAPP_URL}
                                                 target='_blank'
@@ -407,7 +391,8 @@ const TripCarousel = () => {
                                             </a>
                                         </div>
                                         {/* Price pill - only when not flipped */}
-                                        <div className={`absolute top-5 left-1/2 z-10 -translate-x-1/2 transition-opacity duration-300 ${isFlipped ? 'opacity-0' : 'opacity-100'}`}>
+                                        <div
+                                            className={`absolute top-5 left-1/2 z-10 -translate-x-1/2 transition-opacity duration-300 ${isFlipped ? 'opacity-0' : 'opacity-100'}`}>
                                             <span
                                                 className='inline-block rounded-full px-3 py-0.5 text-[10px] font-bold text-white shadow-md md:px-4 md:py-1 md:text-xs'
                                                 style={{ backgroundColor: trip.colorHex }}>
@@ -438,13 +423,13 @@ const TripCarousel = () => {
             <div className='mt-8 flex flex-wrap items-center justify-center gap-4 md:gap-6'>
                 <button
                     onClick={prev}
-                    className='flex size-12 items-center justify-center rounded-full border-2 border-navy/20 text-navy transition-all duration-200 hover:border-orange hover:bg-orange hover:text-white'>
+                    className='border-navy/20 text-navy hover:border-orange hover:bg-orange flex size-12 items-center justify-center rounded-full border-2 transition-all duration-200 hover:text-white'>
                     <svg className='size-5' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={2.5}>
                         <path strokeLinecap='round' strokeLinejoin='round' d='M15 19l-7-7 7-7' />
                     </svg>
                 </button>
 
-                <div className='text-xs font-semibold text-navy md:hidden'>
+                <div className='text-navy text-xs font-semibold md:hidden'>
                     {realIndex + 1} / {trips.length}
                 </div>
 
@@ -454,9 +439,7 @@ const TripCarousel = () => {
                             key={i}
                             onClick={() => setCurrentIndex(trips.length + i)}
                             className={`h-2.5 rounded-full transition-all duration-300 ${
-                                realIndex === i
-                                    ? 'w-8 bg-orange'
-                                    : 'w-2.5 bg-navy/20 hover:bg-navy/40'
+                                realIndex === i ? 'bg-orange w-8' : 'bg-navy/20 hover:bg-navy/40 w-2.5'
                             }`}
                         />
                     ))}
@@ -464,7 +447,7 @@ const TripCarousel = () => {
 
                 <button
                     onClick={next}
-                    className='flex size-12 items-center justify-center rounded-full border-2 border-navy/20 text-navy transition-all duration-200 hover:border-orange hover:bg-orange hover:text-white'>
+                    className='border-navy/20 text-navy hover:border-orange hover:bg-orange flex size-12 items-center justify-center rounded-full border-2 transition-all duration-200 hover:text-white'>
                     <svg className='size-5' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={2.5}>
                         <path strokeLinecap='round' strokeLinejoin='round' d='M9 5l7 7-7 7' />
                     </svg>

@@ -570,7 +570,16 @@ const Page = () => {
                         </a>
                     </div>
                     <p className='text-sm text-white/50'>
-                        &copy; {new Date().getFullYear()} Shelleys Tours NL. Alle rechten voorbehouden.
+                        &copy; {new Date().getFullYear()} Shelleys Tours NL. Alle rechten voorbehouden. Website gemaakt
+                        door{' '}
+                        <a
+                            href='https://www.amplifybyaura.nl/'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className='hover:text-orange text-white underline'>
+                            Amplify
+                        </a>
+                        .
                     </p>
                 </div>
             </footer>

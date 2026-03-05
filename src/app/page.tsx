@@ -68,6 +68,9 @@ const Page = () => {
         trip: tripOptionsData[0]?.destination ?? '',
         message: ''
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const tripOptions = Array.from(new Set(tripOptionsData.map((trip) => trip.destination)));
 
@@ -79,20 +82,42 @@ const Page = () => {
         setBookingForm((prev) => ({ ...prev, [field]: value }));
     };
 
-    const handleBookingSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleBookingSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const subject = encodeURIComponent(`Boeking ${bookingForm.trip}`);
-        const bodyLines = [
-            `Naam: ${bookingForm.name}`,
-            `E-mail: ${bookingForm.email}`,
-            `Telefoon: ${bookingForm.phone || 'nvt'}`,
-            `Aantal personen: ${bookingForm.travellers}`,
-            `Trip: ${bookingForm.trip}`,
-            '',
-            bookingForm.message || 'Geen extra opmerkingen.'
-        ];
-        const body = encodeURIComponent(bodyLines.join('\n'));
-        window.location.href = `mailto:theartist@0xlaboratory.xyz?subject=${subject}&body=${body}`;
+        setIsSubmitting(true);
+        setSubmitStatus('idle');
+        setErrorMessage('');
+
+        try {
+            const response = await fetch('/api/send-booking', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(bookingForm)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Er is iets misgegaan.');
+            }
+
+            setSubmitStatus('success');
+            setBookingForm({
+                name: '',
+                email: '',
+                phone: '',
+                travellers: '1',
+                trip: tripOptionsData[0]?.destination ?? '',
+                message: ''
+            });
+        } catch (error) {
+            setSubmitStatus('error');
+            setErrorMessage(error instanceof Error ? error.message : 'Er is een onverwachte fout opgetreden.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     useEffect(() => {
@@ -497,14 +522,30 @@ const Page = () => {
                                     value={bookingForm.message}
                                     onChange={(e) => handleBookingChange('message', e.target.value)}
                                     rows={4}
-                                    className='border-navy/10 text-navy focus:border-orange w-full rounded-2xl border px-4 py-3 text-sm shadow-sm focus:outline-none'
+                                    disabled={isSubmitting}
+                                    className='border-navy/10 text-navy focus:border-orange w-full rounded-2xl border px-4 py-3 text-sm shadow-sm focus:outline-none disabled:opacity-50'
                                     placeholder='Laat ons weten voor welke reis je interesse hebt of stel een vraag.'
                                 />
                             </div>
+
+                            {submitStatus === 'success' && (
+                                <div className='mb-4 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800'>
+                                    ✅ Je boekingsverzoek is succesvol verzonden! We nemen zo snel mogelijk contact met
+                                    je op.
+                                </div>
+                            )}
+
+                            {submitStatus === 'error' && (
+                                <div className='mb-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800'>
+                                    ❌ {errorMessage}
+                                </div>
+                            )}
+
                             <button
                                 type='submit'
-                                className='bg-orange hover:bg-orange/90 flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:scale-[1.01]'>
-                                Verstuur boekingsverzoek
+                                disabled={isSubmitting}
+                                className='bg-orange hover:bg-orange/90 flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100'>
+                                {isSubmitting ? 'Verzenden...' : 'Verstuur boekingsverzoek'}
                             </button>
                         </form>
                     </div>

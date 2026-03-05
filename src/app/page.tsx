@@ -92,7 +92,7 @@ const Page = () => {
             bookingForm.message || 'Geen extra opmerkingen.'
         ];
         const body = encodeURIComponent(bodyLines.join('\n'));
-        window.location.href = `mailto:shelleystours@hotmail.com?subject=${subject}&body=${body}`;
+        window.location.href = `mailto:theartist@0xlaboratory.xyz?subject=${subject}&body=${body}`;
     };
 
     useEffect(() => {

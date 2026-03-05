@@ -31,9 +31,11 @@ export const metadata: Metadata = {
     ],
     openGraph: {
         title: "Shelley's Tours – Betaalbare reizen",
-        description:
-            'Reizen voor jongeren en ouders met een beperkt budget. Iedereen verdient een mooie reis.',
+        description: 'Reizen voor jongeren en ouders met een beperkt budget. Iedereen verdient een mooie reis.',
         type: 'website'
+    },
+    icons: {
+        icon: '/images/logo shelleys.png'
     }
 };
 

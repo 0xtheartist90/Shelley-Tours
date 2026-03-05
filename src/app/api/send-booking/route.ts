@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
         // Send email using Resend
         const { data, error } = await resend.emails.send({
             from: 'noreply@shelleystours.nl',
-            to: 'theartist@0xlaboratory.xyz',
+            to: 'shelleystours@hotmail.com',
             subject: `Nieuwe Boeking: ${trip}`,
             html: getBookingEmailHtml({
                 name,

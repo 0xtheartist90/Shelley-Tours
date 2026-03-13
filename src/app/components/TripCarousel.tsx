@@ -106,7 +106,7 @@ const rawTrips = [
         description: 'Dagtrip Duitsland',
         date: 'Za 22 augustus',
         price: 'v.a. €30,50',
-        image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&h=400&fit=crop',
+        image: '/images/bochum.png',
         color: 'bg-orange',
         colorHex: '#F5A623',
         details: ['€40,50 per volwassene', '€35,50 kind (4–10 jr)', '€30,50 kind (0–3 jr)']

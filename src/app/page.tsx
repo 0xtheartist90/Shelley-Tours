@@ -247,7 +247,7 @@ const Page = () => {
                             <span className='text-orange block'>Shelleys Tours NL</span>
                         </h1>
                         <p className='mx-auto mb-10 max-w-2xl text-lg text-white/80 md:text-xl'>
-                            Reizen voor jongeren en ouders met een beperkt budget.
+                            voor jong en oud met een beperkt budget
                             <br className='hidden md:block' />
                             Iedereen verdient een mooie reis.
                         </p>

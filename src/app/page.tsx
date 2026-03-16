@@ -36,10 +36,8 @@ const WhatsAppButtonSmall = ({ children }: { children: React.ReactNode }) => (
 );
 
 const reasons = [
-    { icon: '💰', text: 'Betaalbare reizen voor elk budget' },
-    { icon: '👨‍👩‍👧‍👦', text: 'Voor jongeren én ouders' },
+    { icon: '💰', text: 'Betaalbare reizen' },
     { icon: '🎉', text: 'Gezellige groepsreizen' },
-    { icon: '✅', text: 'Transparante prijzen' },
     { icon: '💬', text: 'Persoonlijk contact via WhatsApp' },
     { icon: '🇳🇱', text: 'Vertrek vanuit Nederland' }
 ];
@@ -246,11 +244,6 @@ const Page = () => {
                             Betaalbaar op reis met
                             <span className='text-orange block'>Shelleys Tours NL</span>
                         </h1>
-                        <p className='mx-auto mb-10 max-w-2xl text-lg text-white/80 md:text-xl'>
-                            voor jong en oud met een beperkt budget
-                            <br className='hidden md:block' />
-                            Iedereen verdient een mooie reis.
-                        </p>
                         <WhatsAppButton>Stuur een WhatsApp-bericht</WhatsAppButton>
                         <div className='mt-12 animate-bounce'>
                             <svg
@@ -289,11 +282,10 @@ const Page = () => {
                                 <span className='text-orange block'>Shelleys Tours NL?</span>
                             </h2>
                             <p className='text-navy/70 mb-5 max-w-md text-lg leading-relaxed'>
-                                Shelleys Tours NL organiseert betaalbare reizen voor mensen die financieel minder ruimte
-                                hebben. Van dagtrips tot meerdaagse reizen: gezellig, duidelijk en zonder verborgen
-                                kosten.
+                                Shelleys Tours NL organiseert betaalbare reizen. Van dagtrips tot meerdaagse reizen:
+                                gezellig, duidelijk en zonder verborgen kosten.
                             </p>
-                            <p className='text-navy mb-8 text-xl font-bold'>Reizen moet voor iedereen mogelijk zijn.</p>
+                            <p className='text-navy mb-8 text-xl font-bold'>Reizen voor iedereen mogelijk!</p>
                             <WhatsAppButton>WhatsApp voor meer info</WhatsAppButton>
                         </div>
                     </div>
@@ -320,7 +312,7 @@ const Page = () => {
                                 Populaire Reizen
                             </h2>
                             <div className='bg-orange mx-auto mb-4 h-1.5 w-16 rounded-full' />
-                            <p className='text-navy/60 text-lg'>Ontdek onze bestemmingen – voor elk budget</p>
+                            <p className='text-navy/60 text-lg'>Ontdek onze bestemmingen</p>
                         </div>
                         <TripCarousel />
                     </div>
@@ -339,7 +331,7 @@ const Page = () => {
                                         Waarom Shelleys Tours NL?
                                     </h2>
                                 </div>
-                                <div className='ml-4 grid grid-cols-2 gap-3 md:ml-8 md:grid-cols-3'>
+                                <div className='ml-4 grid grid-cols-2 gap-3 md:ml-8'>
                                     {reasons.map((reason) => (
                                         <div
                                             key={reason.text}

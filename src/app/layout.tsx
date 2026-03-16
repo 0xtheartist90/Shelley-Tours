@@ -35,7 +35,12 @@ export const metadata: Metadata = {
         type: 'website'
     },
     icons: {
-        icon: '/images/logo shelleys.png'
+        icon: [
+            { url: '/favicon.ico', sizes: 'any' },
+            { url: '/icon.png', type: 'image/png', sizes: '512x512' }
+        ],
+        shortcut: '/favicon.ico',
+        apple: '/apple-icon.png'
     }
 };
 

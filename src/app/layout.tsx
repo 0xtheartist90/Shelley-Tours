@@ -17,7 +17,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-    title: "Shelley's Tours – Betaalbare reizen voor jongeren en ouders",
+    title: 'Shelleys Tours NL - Betaalbare reizen voor iedereen',
     description:
         "Shelley's Tours organiseert betaalbare reizen voor jongeren en ouders met een beperkt budget. Van dagtrips tot meerdaagse reizen. Stuur een WhatsApp-bericht voor meer info!",
     keywords: [

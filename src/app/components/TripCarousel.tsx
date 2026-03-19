@@ -146,7 +146,7 @@ const rawTrips = [
         description: 'Herfstvakantie',
         date: 'Vr 10 – Za 18 oktober',
         price: 'v.a. €395 pp',
-        image: 'https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=600&h=400&fit=crop',
+        image: '/images/lloret de mar.png',
         color: 'bg-navy',
         colorHex: '#1B2E5C',
         details: [
@@ -157,7 +157,7 @@ const rawTrips = [
         ]
     },
     {
-        destination: 'Lloret de Mar',
+        destination: 'Spanje (Midden Holland)',
         description: 'Herfstvakantie',
         date: 'Do 16 – Vr 24 oktober',
         price: 'v.a. €395 pp',
